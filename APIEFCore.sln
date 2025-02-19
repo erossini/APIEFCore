@@ -18,7 +18,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "json tests", "json tests", "{DED930A8-6669-4E13-8C78-D2A8481D93DD}"
 	ProjectSection(SolutionItems) = preProject
 		new_client.json = new_client.json
+		update_client.json = update_client.json
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIEFCore.Mapper", "APIEFCore.Mapper\APIEFCore.Mapper.csproj", "{FEF08AAA-91E5-4F70-91F0-4F574A9D5B8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +45,10 @@ Global
 		{2C0F3EDB-ED4B-49CC-8510-2776E4470E64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C0F3EDB-ED4B-49CC-8510-2776E4470E64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C0F3EDB-ED4B-49CC-8510-2776E4470E64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEF08AAA-91E5-4F70-91F0-4F574A9D5B8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEF08AAA-91E5-4F70-91F0-4F574A9D5B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEF08AAA-91E5-4F70-91F0-4F574A9D5B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEF08AAA-91E5-4F70-91F0-4F574A9D5B8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +56,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7D879594-89D4-4E92-B06F-4CB8F0FC9386} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{2C0F3EDB-ED4B-49CC-8510-2776E4470E64} = {EBC3E9AA-E23E-40E5-BDE0-F9E7C7D379F8}
+		{FEF08AAA-91E5-4F70-91F0-4F574A9D5B8F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10AF56DD-668E-4066-8EE6-171F09A0CDB5}

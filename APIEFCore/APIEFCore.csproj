@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\APIEFCore.Client\APIEFCore.Client.csproj" />
     <ProjectReference Include="..\APIEFCore.Domain\APIEFCore.Domain.csproj" />
+    <ProjectReference Include="..\APIEFCore.Mapper\APIEFCore.Mapper.csproj" />
     <ProjectReference Include="..\APIEFCore.Persistence\APIEFCore.Persistence.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.2" />

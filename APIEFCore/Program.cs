@@ -7,6 +7,7 @@ using APIEFCore.Components.Account;
 using APIEFCore.Data;
 using APIEFCore.Persistence;
 using APIEFCore.Endpoints;
+using APIEFCore.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,7 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 
 builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddMapperServices();
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -67,8 +69,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-;
 
 app.UseHttpsRedirection();
 
