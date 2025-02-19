@@ -19,6 +19,7 @@ public static class ClientEndpoints
         group.MapGet("/{id}", async Task<Results<Ok<Domain.Client>, NotFound>> (long id, MyDbContext db) =>
             {
                 return await db.Clients.AsNoTracking()
+                        .Include(c => c.Channels)
                         .FirstOrDefaultAsync(model => model.Id == id)
                     is Domain.Client model
                     ? TypedResults.Ok(model)
