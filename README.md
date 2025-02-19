@@ -7,3 +7,9 @@ I want to give a complete example of minimal APIs in Blazor with Entity Framewor
 This code is related to the following posts:
 
 - [APIs with Entity Framework Core](https://puresourcecode.com/dotnet/net9/apis-with-entity-framework-core)
+
+## Why this project
+
+Let me show a real database I'm working on. As you can see I have a few tables but not all of them are coming strictly from the code. The tables `Clients`, `ClientAddresses` and `tbl_Channels` are created from the `Domain`. `ChannelClient` is a joined table that Entity Framework Core is creating automatically.
+
+![image](https://github.com/user-attachments/assets/b8496939-fd06-4c00-a558-0582311dc89d)
