@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +23,9 @@ namespace APIEFCore.Persistence
             if (cnnString == null)
                 cnnString = configuration.GetConnectionString(cnnStringName);
 
-            services.AddDbContext<MyDbContext>(options => options.UseSqlServer(cnnString));
+            services.AddDbContext<MyDbContext>(options => options.UseSqlServer(cnnString)
+                .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning))
+                .EnableDetailedErrors());
 
             return services;
         }

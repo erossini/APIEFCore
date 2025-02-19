@@ -11,8 +11,9 @@ namespace APIEFCore.Mapper.Profiles
     {
         public MappingProfile()
         {
-            CreateMap<Domain.Client, Domain.Client>().ReverseMap();
-            CreateMap<Domain.Channel, Domain.Channel>().ReverseMap();
+            CreateMap<Domain.Client, Domain.Client>()
+                .ForMember(x => x.Channels, opt => opt.Ignore());
+            CreateMap<Domain.Channel, Domain.Channel>();
         }
     }
 }

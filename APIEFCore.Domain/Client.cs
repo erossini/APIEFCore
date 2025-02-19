@@ -22,6 +22,6 @@ namespace APIEFCore.Domain
 
         [JsonPropertyName("channels")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public IList<Channel>? Channels { get; set; }
+        public ICollection<Channel>? Channels { get; set; }
     }
 }

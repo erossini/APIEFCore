@@ -1,0 +1,14 @@
+{
+    "firstname": "Test1",
+    "lastname": "Test2",
+    "channels": [
+        {
+            "Id": 1,
+            "name": "Google"
+        },
+        {
+            "Id": 2,
+            "name": "Bing"
+        }
+    ]
+}

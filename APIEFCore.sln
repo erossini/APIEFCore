@@ -17,8 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIEFCore.Persistence", "AP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "json tests", "json tests", "{DED930A8-6669-4E13-8C78-D2A8481D93DD}"
 	ProjectSection(SolutionItems) = preProject
-		new_client.json = new_client.json
-		update_client.json = update_client.json
+		json for tests\new_channel.json = json for tests\new_channel.json
+		json for tests\new_client.json = json for tests\new_client.json
+		json for tests\update_client.json = json for tests\update_client.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIEFCore.Mapper", "APIEFCore.Mapper\APIEFCore.Mapper.csproj", "{FEF08AAA-91E5-4F70-91F0-4F574A9D5B8F}"

@@ -30,36 +30,36 @@ public static class ClientEndpoints
             .WithOpenApi();
 
         group.MapPut("/{id}",
-                async Task<Results<Ok, NotFound>> (long id, Domain.Client client, MyDbContext db, IMapper mapper) =>
+                async Task<Results<Ok<Domain.Client>, NotFound>> (long id, Domain.Client client, MyDbContext db,
+                    IMapper mapper) =>
                 {
-                    var localClient = await db.Clients.AsNoTracking()
+                    var localClient = await db.Clients
                         .Include(c => c.Channels)
                         .FirstAsync(model => model.Id == id);
+                    mapper.Map(client, localClient);
 
                     var updatedChannelIds = client.Channels.Select(c => c.Id).ToList();
                     var currentChannelIds = localClient.Channels.Select(c => c.Id).ToList();
                     var channelIdsToAdd = updatedChannelIds.Except(currentChannelIds);
                     var channelIdsToRemove = currentChannelIds.Except(updatedChannelIds);
 
-                    mapper.Map(client, localClient);
-
                     if (channelIdsToRemove.Any())
                     {
                         var channelsToRemove =
-                            localClient.Channels.Where(c => channelIdsToRemove.Contains(c.Id)).ToList();
+                            localClient.Channels.Where(c => channelIdsToRemove.Contains(c.Id));
                         foreach (var channel in channelsToRemove)
                             localClient.Channels.Remove(channel);
                     }
 
                     if (channelIdsToAdd.Any())
                     {
-                        var channelsToAdd = await db.Channels.Where(c => channelIdsToAdd.Contains(c.Id)).ToListAsync();
+                        var channelsToAdd = db.Channels.Where(c => channelIdsToAdd.Contains(c.Id));
                         foreach (var channel in channelsToAdd)
                             localClient.Channels.Add(channel);
                     }
 
                     await db.SaveChangesAsync();
-                    return TypedResults.Ok();
+                    return TypedResults.Ok(localClient);
                 })
             .WithName("UpdateClient")
             .WithOpenApi();

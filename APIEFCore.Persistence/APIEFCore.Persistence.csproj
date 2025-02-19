@@ -16,4 +16,8 @@
     <ProjectReference Include="..\APIEFCore.Domain\APIEFCore.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
