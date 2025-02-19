@@ -43,6 +43,18 @@ public static class ClientEndpoints
 
         group.MapPost("/", async (Domain.Client client, MyDbContext db) =>
             {
+                if (client.Channels != null && client.Channels.Count > 0)
+                {
+                    var list = client.Channels;
+                    client.Channels = new List<Channel>();
+                    foreach (var c in list)
+                    {
+                        var channel = await db.Channels.FirstOrDefaultAsync(ch => ch.Id == c.Id);
+                        if (channel != null)
+                            client.Channels.Add(channel);
+                    }
+                }
+
                 db.Clients.Add(client);
                 await db.SaveChangesAsync();
                 return TypedResults.Created($"/api/Client/{client.Id}", client);
