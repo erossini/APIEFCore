@@ -1,3 +1,4 @@
+using APIEFCode.Domain.Mapper;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,6 @@ using APIEFCore.Components.Account;
 using APIEFCore.Data;
 using APIEFCore.Persistence;
 using APIEFCore.Endpoints;
-using APIEFCore.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -29,38 +29,41 @@ public static class ClientEndpoints
             .WithName("GetClientById")
             .WithOpenApi();
 
-        group.MapPut("/{id}",
-                async Task<Results<Ok<Domain.Client>, NotFound>> (long id, Domain.Client client, MyDbContext db,
+            group.MapPut("/{id}", async Task<Results<Ok, NotFound>> (long id, Domain.Client client, MyDbContext db,
                     IMapper mapper) =>
                 {
-                    var localClient = await db.Clients
-                        .Include(c => c.Channels)
-                        .FirstAsync(model => model.Id == id);
-                    mapper.Map(client, localClient);
+                var localClient = await db.Clients
+                    .Include((c => c.Channels))
+                    .FirstAsync(model => model.Id == id);
 
-                    var updatedChannelIds = client.Channels.Select(c => c.Id).ToList();
-                    var currentChannelIds = localClient.Channels.Select(c => c.Id).ToList();
-                    var channelIdsToAdd = updatedChannelIds.Except(currentChannelIds);
-                    var channelIdsToRemove = currentChannelIds.Except(updatedChannelIds);
+                if (localClient == null)
+                    return TypedResults.NotFound();
 
-                    if (channelIdsToRemove.Any())
-                    {
-                        var channelsToRemove =
-                            localClient.Channels.Where(c => channelIdsToRemove.Contains(c.Id)).ToList();
-                        foreach (var channel in channelsToRemove)
-                            localClient.Channels.Remove(channel);
-                    }
+                mapper.Map(client, localClient);
 
-                    if (channelIdsToAdd.Any())
-                    {
-                        var channelsToAdd = await db.Channels.Where(c => channelIdsToAdd.Contains(c.Id)).ToListAsync();
-                        foreach (var channel in channelsToAdd)
-                            localClient.Channels.Add(channel);
-                    }
+                var updatedChannelIds = client.Channels.Select(c => c.Id).ToList();
+                var currentChannelIds = localClient.Channels.Select(c => c.Id).ToList();
+                var channelIdsToAdd = updatedChannelIds.Except(currentChannelIds);
+                var channelIdsToRemove = currentChannelIds.Except(updatedChannelIds);
 
-                    await db.SaveChangesAsync();
-                    return TypedResults.Ok(localClient);
-                })
+                if (channelIdsToRemove.Any())
+                {
+                    var channelsToRemove =
+                        localClient.Channels.Where(c => channelIdsToRemove.Contains(c.Id)).ToList();
+                    foreach (var channel in channelsToRemove)
+                        localClient.Channels.Remove(channel);
+                }
+
+                if (channelIdsToAdd.Any())
+                {
+                    var channelsToAdd = await db.Channels.Where(c => channelIdsToAdd.Contains(c.Id)).ToListAsync();
+                    foreach (var channel in channelsToAdd)
+                        localClient.Channels.Add(channel);
+                }
+
+                await db.SaveChangesAsync();
+                return TypedResults.Ok();
+            })
             .WithName("UpdateClient")
             .WithOpenApi();
 
