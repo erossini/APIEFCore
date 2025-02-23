@@ -46,14 +46,14 @@ public static class ClientEndpoints
                     if (channelIdsToRemove.Any())
                     {
                         var channelsToRemove =
-                            localClient.Channels.Where(c => channelIdsToRemove.Contains(c.Id));
+                            localClient.Channels.Where(c => channelIdsToRemove.Contains(c.Id)).ToList();
                         foreach (var channel in channelsToRemove)
                             localClient.Channels.Remove(channel);
                     }
 
                     if (channelIdsToAdd.Any())
                     {
-                        var channelsToAdd = db.Channels.Where(c => channelIdsToAdd.Contains(c.Id));
+                        var channelsToAdd = await db.Channels.Where(c => channelIdsToAdd.Contains(c.Id)).ToListAsync();
                         foreach (var channel in channelsToAdd)
                             localClient.Channels.Add(channel);
                     }
