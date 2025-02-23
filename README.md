@@ -8,6 +8,7 @@ This code is related to the following posts:
 
 - [APIs with Entity Framework Core](https://puresourcecode.com/dotnet/net9/apis-with-entity-framework-core)
 - [APIs with Entity Framework Core: POST](https://puresourcecode.com/dotnet/csharp/apis-with-entity-framework-core-post/)
+- [APIs with Entity Framework Core: PUT](https://puresourcecode.com/dotnet/net7/apis-with-entity-framework-core-put/)
 
 ## Why this project
 
