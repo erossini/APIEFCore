@@ -29,9 +29,9 @@ public static class ClientEndpoints
             .WithName("GetClientById")
             .WithOpenApi();
 
-            group.MapPut("/{id}", async Task<Results<Ok, NotFound>> (long id, Domain.Client client, MyDbContext db,
-                    IMapper mapper) =>
-                {
+        group.MapPut("/{id}", async Task<Results<Ok, NotFound>> (long id, Domain.Client client, MyDbContext db,
+                IMapper mapper) =>
+            {
                 var localClient = await db.Clients
                     .Include((c => c.Channels))
                     .FirstAsync(model => model.Id == id);
